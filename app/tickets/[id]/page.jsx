@@ -1,3 +1,17 @@
+import { notFound } from "next/navigation";
+
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const res = await fetch("http://localhost:4000/tickets");
+
+  const tickets = await res.json();
+
+  return tickets.map((ticket) => ({
+    id: ticket.id,
+  }));
+}
+
 async function getTicket(id) {
   const res = await fetch("http://localhost:4000/tickets/" + id, {
     // set-up our own api by using data from db.json file
@@ -5,7 +19,11 @@ async function getTicket(id) {
       revalidate: 60,
     },
   });
-  //   console.log(res.json());
+
+  if (!res.ok) {
+    notFound();
+  }
+
   return res.json();
 }
 
