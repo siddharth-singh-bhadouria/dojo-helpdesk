@@ -2,7 +2,7 @@ import Link from "next/link";
 
 async function getTickets() {
   const res = await fetch("http://localhost:4000/tickets", {
-    // set-up our own api by using data from db.json file
+    // set-up our own api by using data from db.json file . The program will never run properly if this file is not running on another localhost because this acts the source api for the data being used by our program.
     next: {
       revalidate: 0, // use 0 to opt out of using cache
     },
