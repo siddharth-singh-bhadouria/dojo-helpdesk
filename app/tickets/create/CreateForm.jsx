@@ -29,6 +29,7 @@ export default function CreateForm() {
     });
 
     if (res.status === 201) {
+      router.refresh(); // I think this is redundant here.
       router.push("/tickets");
     }
   };

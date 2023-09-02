@@ -13,7 +13,7 @@ export async function generateStaticParams() {
 }
 
 async function getTicket(id) {
-  const res = await fetch("http://localhost:4000/tickets/" + id, {
+  const res = await fetch(`http://localhost:4000/tickets/${id}`, {
     // set-up our own api by using data from db.json file
     next: {
       revalidate: 60,
